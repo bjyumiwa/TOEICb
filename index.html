@@ -1525,11 +1525,15 @@ function updateVocabularyProgress() {
 
 function nextWord() {
   const wordElement = document.getElementById('daily-word');
-  wordElement.textContent = vocabularyWords[currentWordIndex].word + " - " + vocabularyWords[currentWordIndex].meaning;
-  currentWordIndex = (currentWordIndex + 1) % vocabularyWords.length;
+  const wordKeys = Object.keys(words); // 単語リストのキーを取得
+  const currentWord = wordKeys[currentWordIndex]; // 現在の単語を取得
+  wordElement.textContent = currentWord + " - " + words[currentWord]; // 単語と意味を表示
+  currentWordIndex = (currentWordIndex + 1) % wordKeys.length; // 次の単語に進む
   updateProgress(0.1);
   updateVocabularyProgress();
 }
+
+
 
 function startAdvancedListeningBasics() {
   alert("高度なリスニング基礎練習を開始します。速度や難易度が上がった会話や講義を聞き、細かいニュアンスまで理解する練習をしましょう！");
